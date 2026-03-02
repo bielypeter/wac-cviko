@@ -6,32 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface BbAmbulanceWlList {
+    interface BielyAmbulanceWlList {
     }
 }
 declare global {
-    interface HTMLBbAmbulanceWlListElement extends Components.BbAmbulanceWlList, HTMLStencilElement {
+    interface HTMLBielyAmbulanceWlListElement extends Components.BielyAmbulanceWlList, HTMLStencilElement {
     }
-    var HTMLBbAmbulanceWlListElement: {
-        prototype: HTMLBbAmbulanceWlListElement;
-        new (): HTMLBbAmbulanceWlListElement;
+    var HTMLBielyAmbulanceWlListElement: {
+        prototype: HTMLBielyAmbulanceWlListElement;
+        new (): HTMLBielyAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
-        "bb-ambulance-wl-list": HTMLBbAmbulanceWlListElement;
+        "biely-ambulance-wl-list": HTMLBielyAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
-    interface BbAmbulanceWlList {
+    interface BielyAmbulanceWlList {
     }
     interface IntrinsicElements {
-        "bb-ambulance-wl-list": BbAmbulanceWlList;
+        "biely-ambulance-wl-list": BielyAmbulanceWlList;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "bb-ambulance-wl-list": LocalJSX.IntrinsicElements["bb-ambulance-wl-list"] & JSXBase.HTMLAttributes<HTMLBbAmbulanceWlListElement>;
+            "biely-ambulance-wl-list": LocalJSX.IntrinsicElements["biely-ambulance-wl-list"] & JSXBase.HTMLAttributes<HTMLBielyAmbulanceWlListElement>;
         }
     }
 }
