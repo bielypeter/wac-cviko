@@ -6,6 +6,12 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface BielyAmbulanceWlApp {
+        /**
+          * @default ''
+         */
+        "basePath": string;
+    }
     interface BielyAmbulanceWlEditor {
         "entryId": string;
     }
@@ -16,7 +22,17 @@ export interface BielyAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLBielyAmbulanceWlEditorElement;
 }
+export interface BielyAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLBielyAmbulanceWlListElement;
+}
 declare global {
+    interface HTMLBielyAmbulanceWlAppElement extends Components.BielyAmbulanceWlApp, HTMLStencilElement {
+    }
+    var HTMLBielyAmbulanceWlAppElement: {
+        prototype: HTMLBielyAmbulanceWlAppElement;
+        new (): HTMLBielyAmbulanceWlAppElement;
+    };
     interface HTMLBielyAmbulanceWlEditorElementEventMap {
         "editor-closed": string;
     }
@@ -34,30 +50,53 @@ declare global {
         prototype: HTMLBielyAmbulanceWlEditorElement;
         new (): HTMLBielyAmbulanceWlEditorElement;
     };
+    interface HTMLBielyAmbulanceWlListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLBielyAmbulanceWlListElement extends Components.BielyAmbulanceWlList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLBielyAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLBielyAmbulanceWlListElement, ev: BielyAmbulanceWlListCustomEvent<HTMLBielyAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLBielyAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLBielyAmbulanceWlListElement, ev: BielyAmbulanceWlListCustomEvent<HTMLBielyAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLBielyAmbulanceWlListElement: {
         prototype: HTMLBielyAmbulanceWlListElement;
         new (): HTMLBielyAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
+        "biely-ambulance-wl-app": HTMLBielyAmbulanceWlAppElement;
         "biely-ambulance-wl-editor": HTMLBielyAmbulanceWlEditorElement;
         "biely-ambulance-wl-list": HTMLBielyAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
+    interface BielyAmbulanceWlApp {
+        /**
+          * @default ''
+         */
+        "basePath"?: string;
+    }
     interface BielyAmbulanceWlEditor {
         "entryId"?: string;
         "onEditor-closed"?: (event: BielyAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface BielyAmbulanceWlList {
+        "onEntry-clicked"?: (event: BielyAmbulanceWlListCustomEvent<string>) => void;
     }
 
+    interface BielyAmbulanceWlAppAttributes {
+        "basePath": string;
+    }
     interface BielyAmbulanceWlEditorAttributes {
         "entryId": string;
     }
 
     interface IntrinsicElements {
+        "biely-ambulance-wl-app": Omit<BielyAmbulanceWlApp, keyof BielyAmbulanceWlAppAttributes> & { [K in keyof BielyAmbulanceWlApp & keyof BielyAmbulanceWlAppAttributes]?: BielyAmbulanceWlApp[K] } & { [K in keyof BielyAmbulanceWlApp & keyof BielyAmbulanceWlAppAttributes as `attr:${K}`]?: BielyAmbulanceWlAppAttributes[K] } & { [K in keyof BielyAmbulanceWlApp & keyof BielyAmbulanceWlAppAttributes as `prop:${K}`]?: BielyAmbulanceWlApp[K] };
         "biely-ambulance-wl-editor": Omit<BielyAmbulanceWlEditor, keyof BielyAmbulanceWlEditorAttributes> & { [K in keyof BielyAmbulanceWlEditor & keyof BielyAmbulanceWlEditorAttributes]?: BielyAmbulanceWlEditor[K] } & { [K in keyof BielyAmbulanceWlEditor & keyof BielyAmbulanceWlEditorAttributes as `attr:${K}`]?: BielyAmbulanceWlEditorAttributes[K] } & { [K in keyof BielyAmbulanceWlEditor & keyof BielyAmbulanceWlEditorAttributes as `prop:${K}`]?: BielyAmbulanceWlEditor[K] };
         "biely-ambulance-wl-list": BielyAmbulanceWlList;
     }
@@ -66,6 +105,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "biely-ambulance-wl-app": LocalJSX.IntrinsicElements["biely-ambulance-wl-app"] & JSXBase.HTMLAttributes<HTMLBielyAmbulanceWlAppElement>;
             "biely-ambulance-wl-editor": LocalJSX.IntrinsicElements["biely-ambulance-wl-editor"] & JSXBase.HTMLAttributes<HTMLBielyAmbulanceWlEditorElement>;
             "biely-ambulance-wl-list": LocalJSX.IntrinsicElements["biely-ambulance-wl-list"] & JSXBase.HTMLAttributes<HTMLBielyAmbulanceWlListElement>;
         }
