@@ -40,6 +40,7 @@ export class BielyAmbulanceWlApp {
   }
 
   render() {
+    console.debug("biely-ambulance-wl-app.render() - path: %s", this.relativePath);
     let element = 'list';
     let entryId = '@new';
 

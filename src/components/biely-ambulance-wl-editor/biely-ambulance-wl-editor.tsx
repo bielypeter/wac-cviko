@@ -35,6 +35,7 @@ export class BielyAmbulanceWlEditor {
         waitingSince: new Date(Date.now()),
         estimatedDurationMinutes: 15,
       };
+      this.entry.estimatedStart = await this.assumedEntryDateAsync();
       return this.entry;
     }
     if (!this.entryId) {
@@ -125,8 +126,11 @@ export class BielyAmbulanceWlEditor {
             <md-icon slot="leading-icon">fingerprint</md-icon>
           </md-filled-text-field>
 
-          <md-filled-text-field label="Čakáte od" disabled value={this.entry?.waitingSince}>
+          <md-filled-text-field label="Čakáte od" disabled vvalue={new Date(this.entry?.waitingSince || Date.now()).toLocaleTimeString()}>
             <md-icon slot="leading-icon">watch_later</md-icon>
+          </md-filled-text-field>
+          <md-filled-text-field disabled label="Predpokladaný čas vyšetrenia" value={new Date(this.entry?.estimatedStart || Date.now()).toLocaleTimeString()}>
+            <md-icon slot="leading-icon">login</md-icon>
           </md-filled-text-field>
 
           {this.renderConditions()}
@@ -276,6 +280,25 @@ export class BielyAmbulanceWlEditor {
       this.entry.condition = Object.assign({}, condition);
       this.entry.estimatedDurationMinutes = condition.typicalDurationMinutes;
       this.duration = condition.typicalDurationMinutes;
+    }
+  }
+  private async assumedEntryDateAsync(): Promise<Date> {
+    try {
+      const configuration = new Configuration({
+        basePath: this.apiBase,
+      });
+
+      const waitingListApi = new AmbulanceWaitingListApi(configuration);
+      const response = await waitingListApi.getWaitingListEntriesRaw({ ambulanceId: this.ambulanceId });
+      if (response.raw.status > 299) {
+        return new Date();
+      }
+      const lastPatientOut = (await response.value())
+        .map((_: WaitingListEntry) => _.estimatedStart.getTime() + _.estimatedDurationMinutes * 60 * 1000)
+        .reduce((acc: number, value: number) => Math.max(acc, value), 0);
+      return new Date(Math.min(Date.now(), lastPatientOut));
+    } catch (err: any) {
+      return new Date();
     }
   }
 }
