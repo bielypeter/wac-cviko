@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface BielyAmbulanceWlApp {
+        "ambulanceId": string;
+        "apiBase": string;
         /**
           * @default ''
          */
@@ -16,6 +18,8 @@ export namespace Components {
         "entryId": string;
     }
     interface BielyAmbulanceWlList {
+        "ambulanceId": string;
+        "apiBase": string;
     }
 }
 export interface BielyAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
@@ -75,6 +79,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface BielyAmbulanceWlApp {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         /**
           * @default ''
          */
@@ -85,20 +91,28 @@ declare namespace LocalJSX {
         "onEditor-closed"?: (event: BielyAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface BielyAmbulanceWlList {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         "onEntry-clicked"?: (event: BielyAmbulanceWlListCustomEvent<string>) => void;
     }
 
     interface BielyAmbulanceWlAppAttributes {
         "basePath": string;
+        "apiBase": string;
+        "ambulanceId": string;
     }
     interface BielyAmbulanceWlEditorAttributes {
         "entryId": string;
+    }
+    interface BielyAmbulanceWlListAttributes {
+        "apiBase": string;
+        "ambulanceId": string;
     }
 
     interface IntrinsicElements {
         "biely-ambulance-wl-app": Omit<BielyAmbulanceWlApp, keyof BielyAmbulanceWlAppAttributes> & { [K in keyof BielyAmbulanceWlApp & keyof BielyAmbulanceWlAppAttributes]?: BielyAmbulanceWlApp[K] } & { [K in keyof BielyAmbulanceWlApp & keyof BielyAmbulanceWlAppAttributes as `attr:${K}`]?: BielyAmbulanceWlAppAttributes[K] } & { [K in keyof BielyAmbulanceWlApp & keyof BielyAmbulanceWlAppAttributes as `prop:${K}`]?: BielyAmbulanceWlApp[K] };
         "biely-ambulance-wl-editor": Omit<BielyAmbulanceWlEditor, keyof BielyAmbulanceWlEditorAttributes> & { [K in keyof BielyAmbulanceWlEditor & keyof BielyAmbulanceWlEditorAttributes]?: BielyAmbulanceWlEditor[K] } & { [K in keyof BielyAmbulanceWlEditor & keyof BielyAmbulanceWlEditorAttributes as `attr:${K}`]?: BielyAmbulanceWlEditorAttributes[K] } & { [K in keyof BielyAmbulanceWlEditor & keyof BielyAmbulanceWlEditorAttributes as `prop:${K}`]?: BielyAmbulanceWlEditor[K] };
-        "biely-ambulance-wl-list": BielyAmbulanceWlList;
+        "biely-ambulance-wl-list": Omit<BielyAmbulanceWlList, keyof BielyAmbulanceWlListAttributes> & { [K in keyof BielyAmbulanceWlList & keyof BielyAmbulanceWlListAttributes]?: BielyAmbulanceWlList[K] } & { [K in keyof BielyAmbulanceWlList & keyof BielyAmbulanceWlListAttributes as `attr:${K}`]?: BielyAmbulanceWlListAttributes[K] } & { [K in keyof BielyAmbulanceWlList & keyof BielyAmbulanceWlListAttributes as `prop:${K}`]?: BielyAmbulanceWlList[K] };
     }
 }
 export { LocalJSX as JSX };
