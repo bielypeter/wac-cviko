@@ -56,7 +56,12 @@ export class BielyAmbulanceWlApp {
     return (
       <Host>
         {element === 'editor' ? (
-          <biely-ambulance-wl-editor entry-id={entryId} oneditor-closed={() => navigate('./list')}></biely-ambulance-wl-editor>
+          <biely-ambulance-wl-editor
+            entry-id={entryId}
+            ambulance-id={this.ambulanceId}
+            api-base={this.apiBase}
+            oneditor-closed={() => navigate('./list')}
+          ></biely-ambulance-wl-editor>
         ) : (
           <biely-ambulance-wl-list
             ambulance-id={this.ambulanceId}
