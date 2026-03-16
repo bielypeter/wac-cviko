@@ -37,6 +37,7 @@
     "start": "run-p -r start:mock start:app",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
+    "test:jest": "jest --config ./jest.config.js",
     "generate": "stencil generate"
   },
   "devDependencies": {
