@@ -29,7 +29,7 @@ describe('biely-ambulance-wl-list', () => {
     fetchMock.resetMocks();
   });
 
-  it('renders', async () => {
+  it('renders sample entries', async () => {
     fetchMock.mockResponseOnce(JSON.stringify(sampleEntries));
 
     const page = await newSpecPage({
