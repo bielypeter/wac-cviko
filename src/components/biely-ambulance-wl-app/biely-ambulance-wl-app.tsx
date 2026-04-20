@@ -12,13 +12,13 @@ declare global {
   shadow: true,
 })
 export class BielyAmbulanceWlApp {
-  @State() private relativePath = '';
-  @Prop() basePath: string = '';
+  @State() private relativePath = "";
+  @Prop() basePath: string = "";
   @Prop() apiBase: string;
   @Prop() ambulanceId: string;
 
   componentWillLoad() {
-    const baseUri = new URL(this.basePath, document.baseURI || '/').pathname;
+    const baseUri = new URL(this.basePath, document.baseURI || "/").pathname;
 
     const toRelative = (path: string) => {
       if (path.startsWith(baseUri)) {
